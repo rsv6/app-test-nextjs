@@ -16,11 +16,11 @@ FROM node:20-slim
 WORKDIR /app
 
 # Copiar apenas os arquivos necessários
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder package*.json ./
+COPY --from=builder next.config.js ./
+COPY --from=builder public ./public
+COPY --from=builder .next ./.next
+COPY --from=builder node_modules ./node_modules
 
 EXPOSE 4000
 
