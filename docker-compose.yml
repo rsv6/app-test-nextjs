@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: appnextpwa
+    ports:
+      - "4000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.appnextpwa.rule=Host(`appnextpwa.srvieira.com.br`)"
+      - "traefik.http.routers.appnextpwa.entrypoints=websecure"
+      - "traefik.http.routers.appnextpwa.tls.certresolver=letsencrypt"
+
+
+networks:
+  web:
+    external: true
