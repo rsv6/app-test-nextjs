@@ -15,8 +15,14 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.appnextpwa.rule=Host(`appnextpwa.srvieira.com.br`)"
-      - "traefik.http.routers.appnextpwa.entrypoints=websecure"
-      - "traefik.http.routers.appnextpwa.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.apptest.entrypoints=websecure"
+      - "traefik.http.routers.apptest.tls=true"
+      - "traefik.http.routers.apptest.tls.certresolver=lets-encrypt"
+      - "traefik.http.services.apptest.loadbalancer.server.port=80"
+      - "traefik.docker.network=web"
+      
+      #- "traefik.http.routers.appnextpwa.entrypoints=websecure"
+      #- "traefik.http.routers.appnextpwa.tls.certresolver=letsencrypt"
 
 
 networks:
