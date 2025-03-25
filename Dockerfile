@@ -11,17 +11,19 @@ COPY . .
 RUN npm run build
 
 # Etapa 2: Produção
-FROM node:20-slim
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Copiar apenas os arquivos necessários
-COPY --from=builder package*.json ./
-COPY --from=builder next.config.js ./
-COPY --from=builder /public ./public
-#COPY --from=builder .next ./.next
-COPY --from=builder /node_modules ./node_modules
+# Copiar arquivos específicos necessários para execução
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/next.config.ts ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
 
-EXPOSE 4000
+# Expor porta padrão do Next.js
+EXPOSE 3000
 
+# Comando de start
 CMD ["npm", "run", "start"]

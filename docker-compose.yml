@@ -1,13 +1,13 @@
 version: '3.9'
 
 services:
-  app:
+  app_nextpwa:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: appnextpwa
+    container_name: app_nextpwa
     ports:
-      - "4000:4000"
+      - "3000:3000"  # Corrigir mapeamento de porta
     environment:
       - NODE_ENV=production
     networks:
@@ -18,7 +18,7 @@ services:
       - "traefik.http.routers.appnextpwa.entrypoints=websecure"
       - "traefik.http.routers.appnextpwa.tls=true"
       - "traefik.http.routers.appnextpwa.tls.certresolver=lets-encrypt"
-      - "traefik.http.services.appnextpwa.loadbalancer.server.port=4000"
+      - "traefik.http.services.appnextpwa.loadbalancer.server.port=3000"
       - "traefik.docker.network=web"
 
 networks:

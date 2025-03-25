@@ -10,6 +10,8 @@ const withPWAConfig = withPWA({
 
 const nextConfig: NextConfig = {
   /* config options here */
+  output: 'standalone', // Configuração para Docker
+  reactStrictMode: true,
 };
 
 //export default nextConfig;
