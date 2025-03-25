@@ -18,9 +18,9 @@ WORKDIR /app
 # Copiar apenas os arquivos necessários
 COPY --from=builder package*.json ./
 COPY --from=builder next.config.js ./
-COPY --from=builder public ./public
-COPY --from=builder .next ./.next
-COPY --from=builder node_modules ./node_modules
+COPY --from=builder /public ./public
+#COPY --from=builder .next ./.next
+COPY --from=builder /node_modules ./node_modules
 
 EXPOSE 4000
 
